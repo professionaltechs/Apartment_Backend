@@ -1,4 +1,5 @@
 import Apartment from "../model/apartment.js";
+import fs from 'fs'
 
 export const createApartment = async (req, res) => {
     try {
@@ -120,6 +121,18 @@ export const deleteApartment = async (req, res) => {
 
 export const permenantlyDeleteApartment = async (req, res) => {
     try {
+        const apartments = await Apartment.find({isDeleted:  1}).select({images: 1,  _id: 0})
+
+        apartments.forEach((item, index) => {
+            item.images.forEach((element, i) => {
+                try {
+                    fs.unlinkSync(`Images/${element.slice(22, element.length)}`);  // 22 for local
+                } catch (error) {
+                    console.log(error.message)
+                }
+            })
+        })
+
         const result = await Apartment.deleteMany({ isDeleted: 1 })
 
         return res.status(200).json({
