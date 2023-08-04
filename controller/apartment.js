@@ -11,8 +11,8 @@ export const createApartment = async (req, res) => {
         const {isDeleted, __v, ...apartmentDetails} = apartment._doc
 
         return res.status(200).json({
-            staus: apartmentDetails,
-            message: "apartment added succesfully"
+            message: apartmentDetails,
+            status: "apartment added succesfully"
         })
     } catch (error) {
         console.log(error)
@@ -33,8 +33,8 @@ export const getApartmentById = async (req, res) => {
         }
 
         return res.status(200).json({
-            staus: apartment,
-            message: "success"
+            message: apartment,
+            status: "success"
         })
     } catch (error) {
         console.log(error)
@@ -46,7 +46,7 @@ export const getApartmentById = async (req, res) => {
 
 export const getAllApartment = async (req, res) => {
     try {
-        const apartment = await Apartment.find({isDeleted: {$ne: 1}}).select({isDeleted: 0, __v: 0})
+        const apartment = await Apartment.find({isDeleted: {$ne: 1}}).select({__v: 0})
 
         if(!apartment){
             return res.status(200).json({
@@ -55,8 +55,8 @@ export const getAllApartment = async (req, res) => {
         }
 
         return res.status(200).json({
-            staus: apartment,
-            message: "success"
+            message: apartment,
+            staus: "success"
         })
     } catch (error) {
         console.log(error)
@@ -83,8 +83,8 @@ export const updateApartment = async (req, res) => {
         await apartment.save()
 
         return res.status(200).json({
-            staus: apartment,
-            message: "success"
+            message: apartment,
+            status: "success"
         })
     } catch (error) {
         console.log(error)
@@ -109,7 +109,7 @@ export const deleteApartment = async (req, res) => {
 
         return res.status(200).json({
             // staus: apartment,
-            message: "deleted succesfully"
+            status: "deleted succesfully"
         })
     } catch (error) {
         console.log(error)

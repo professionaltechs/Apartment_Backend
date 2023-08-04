@@ -41,10 +41,11 @@ const storage = multer.diskStorage({
 app.post("/imageUpload", upload.array("image", 12), (req, res, next) => {
     console.log(req.files)
 
-    const imglinks = req.files.map((item, index) => {
-        return `http://localhost:5000/${item.path.slice(7, item.path.length)}`     // for local
-        // return `http://localhost:5000/${item.path.slice(7, item.path.length)}`
-    })
+    const imglinks = []
+    for (let i = 0; i < req.files.length; i++) {
+      imglinks.push(`http://localhost:5000/${req.files[i].path.slice(7, req.files[i].path.length)}`)
+      // `http://localhost:5000/${item.path.slice(7, item.path.length)}`
+    }
   return res.json({
     status: "success",
     message: imglinks,

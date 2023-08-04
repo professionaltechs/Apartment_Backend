@@ -6,6 +6,10 @@ const apartmentSchema = new Schema({
         type: String,
         required: [true, "name is required"],
     },
+    houseUrl: {
+        type: String,
+        required: [true, "house Url is required"],
+    },
     price: {
         type: Number,
         required: [true, "price is required"]
