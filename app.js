@@ -43,8 +43,8 @@ app.post("/imageUpload", upload.array("image", 12), (req, res, next) => {
 
     const imglinks = []
     for (let i = 0; i < req.files.length; i++) {
-      imglinks.push(`http://localhost:5000/${req.files[i].path.slice(7, req.files[i].path.length)}`)
-      // `http://localhost:5000/${item.path.slice(7, item.path.length)}`
+      imglinks.push(`http://localhost:5000/${req.files[i].filename}`)
+      // `http://52.71.29.228/${req.files[i].filename}`
     }
   return res.json({
     status: "success",

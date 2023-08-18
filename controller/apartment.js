@@ -71,14 +71,16 @@ export const updateApartment = async (req, res) => {
         const apartment = await Apartment.findOne({_id: req.body.apartmentId, isDeleted: {$ne: 1}}).select({isDeleted: 0, __v: 0})
         if(!apartment){
             return res.status(200).json({
-                message: "no record found"
+                message: [],
+                status: "not found"
             })
         }
 
         apartment.name = req.body.name || apartment.name
         apartment.price = req.body.price || apartment.price
+        apartment.houseUrl = req.body.houseUrl || apartment.houseUrl
         apartment.description = req.body.description || apartment.description
-        apartment.images = req.body.images || apartment.images
+        // apartment.images = req.body.images || apartment.images
 
         await apartment.save()
 
@@ -93,6 +95,34 @@ export const updateApartment = async (req, res) => {
         })
     }
 }
+
+export const updateApartmentImages = async (req, res) => {
+    try {
+        console.log("hersssssss")
+        const apartment = await Apartment.findOne({_id: req.body.apartmentId, isDeleted: {$ne: 1}}).select({isDeleted: 0, __v: 0})
+        if(!apartment){
+            return res.status(200).json({
+                message: [],
+                status: "not found"
+            })
+        }
+
+        apartment.images = req.body.images || apartment.images
+
+        await apartment.save()
+
+        return res.status(200).json({
+            message: apartment.images,
+            status: "success"
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
+
 
 export const deleteApartment = async (req, res) => {
     try {
