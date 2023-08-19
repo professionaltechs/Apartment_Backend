@@ -80,6 +80,9 @@ export const updateApartment = async (req, res) => {
         apartment.price = req.body.price || apartment.price
         apartment.houseUrl = req.body.houseUrl || apartment.houseUrl
         apartment.description = req.body.description || apartment.description
+        apartment.numberOfBedrooms = req.body.numberOfBedrooms || apartment.numberOfBedrooms
+        apartment.stairs = req.body.stairs || apartment.stairs
+        
         // apartment.images = req.body.images || apartment.images
 
         await apartment.save()

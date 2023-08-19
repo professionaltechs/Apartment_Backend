@@ -17,6 +17,13 @@ const apartmentSchema = new Schema({
     description: {
         type: String,
     },
+    numberOfBedrooms: {
+        type: Number,
+    },
+    stairs: {
+        type: String,
+        enum: ["upstairs", "downstairs"]
+    },
     images: {
         type: [String]
     },
