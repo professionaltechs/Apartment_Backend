@@ -39,12 +39,9 @@ const storage = multer.diskStorage({
   const upload = multer({storage: storage});
 
 app.post("/imageUpload", upload.array("image", 12), (req, res, next) => {
-    // console.log(req.files)
-
     const imglinks = []
     for (let i = 0; i < req.files.length; i++) {
       imglinks.push(`${req.files[i].filename}`)
-      // `http://52.71.29.228/${req.files[i].filename}`
     }
   return res.json({
     status: "success",

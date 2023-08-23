@@ -101,7 +101,6 @@ export const updateApartment = async (req, res) => {
 
 export const updateApartmentImages = async (req, res) => {
     try {
-        console.log("hersssssss")
         const apartment = await Apartment.findOne({_id: req.body.apartmentId, isDeleted: {$ne: 1}}).select({isDeleted: 0, __v: 0})
         if(!apartment){
             return res.status(200).json({

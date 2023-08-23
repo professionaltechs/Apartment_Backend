@@ -18,11 +18,16 @@ const apartmentSchema = new Schema({
         type: String,
     },
     numberOfBedrooms: {
-        type: Number,
+        type: String,
+        enum: ["one bedroom", "two bedrooms"]
     },
     stairs: {
         type: String,
         enum: ["upstairs", "downstairs"]
+    },
+    complex: {
+        type: String,
+        enum: ["Austin West", "Stagecoach West", "Timberwood"]
     },
     images: {
         type: [String]
