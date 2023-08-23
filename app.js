@@ -14,7 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const DB =
   process.env.DB ||
-  "mongodb+srv://testDatabase:test@cluster0.xyfq66h.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://awestman:awestmandatabase123@cluster0.c3zchkz.mongodb.net/?retryWrites=true&w=majority"
 
 // middlewares
 app.use(cors());
