@@ -79,3 +79,46 @@ export const signIn = async (req, res) => {
         })
     }
 }
+
+export const createUser = async (req, res) => {
+    try {
+        const admin = new Admin(req.body);
+        
+
+        await admin.save();
+
+        const {isDeleted, __v, ...userDetails} = admin._doc
+
+        return res.status(200).json({
+            message: userDetails,
+            status: "user added succesfully"
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message: error.message
+        })
+    }
+} 
+
+export const getAllUsers = async (req, res) => {
+    try {
+        const users = await Admin.find({type: {$ne: 1}})
+
+        if(!users){
+            return res.status(200).json({
+                message: "no record found"
+            })
+        }
+
+        return res.status(200).json({
+            message: users,
+            staus: "success"
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}

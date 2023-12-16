@@ -10,6 +10,11 @@ const adminSchema = new Schema({
         type: String,
         required: [true, "password is required"],
     },
+    type: {
+        type: Number,
+        required: true,
+        default: 0
+    }
 },
 {
     timeStamps: true
