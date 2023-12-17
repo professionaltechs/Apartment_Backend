@@ -14,7 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const DB =
   process.env.DB ||
-  "mongodb+srv://awestman:awestmandatabase123@cluster0.c3zchkz.mongodb.net/?retryWrites=true&w=majority"
+  "mongodb+srv://awestman:awestmandatabase123@cluster0.c3zchkz.mongodb.net/?retryWrites=true&w=majority";
 
 // middlewares
 app.use(cors());
@@ -27,22 +27,22 @@ app.use(function (req, res, next) {
 });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('Images'));
+app.use(express.static("Images"));
 const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-      cb(null, './Images/');
-    },
-    filename: function(req, file, cb) {
-      cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname)
-    }
-  })
-  const upload = multer({storage: storage});
+  destination: function (req, file, cb) {
+    cb(null, "./Images/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, new Date().toISOString().replace(/:/g, "-") + file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
 
 app.post("/imageUpload", upload.array("image", 12), (req, res, next) => {
-    const imglinks = []
-    for (let i = 0; i < req.files.length; i++) {
-      imglinks.push(`${req.files[i].filename}`)
-    }
+  const imglinks = [];
+  for (let i = 0; i < req.files.length; i++) {
+    imglinks.push(`${req.files[i].filename}`);
+  }
   return res.json({
     status: "success",
     message: imglinks,
