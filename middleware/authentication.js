@@ -5,6 +5,7 @@ export default (req, res, next) => {
   if (typeof bearerHeader !== "undefined") {
     const bearer = bearerHeader.split(" ");
     const bearertoken = bearer[1];
+
     req.token = bearertoken;
     jwt.verify(req.token, "apartment_management", async (err, Authdata) => {
       if (err) {
