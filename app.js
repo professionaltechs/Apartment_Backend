@@ -40,7 +40,7 @@ const upload = multer({ storage: storage });
 
 app.post("/imageUpload", upload.array("image", 12), (req, res, next) => {
   const imglinks = [];
-  for (let i = 0; i < req.files.length; i++) {
+  for (let i = 0; i < req.files.length; i++) {  
     imglinks.push(`${req.files[i].filename}`);
   }
   return res.json({
