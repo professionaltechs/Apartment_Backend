@@ -98,7 +98,7 @@ export const createUser = async (req, res) => {
     await admin.save();
 
     const { isDeleted, __v, ...userDetails } = admin._doc;
-
+    
     return res.status(200).json({
       message: userDetails,
       status: "user added succesfully",

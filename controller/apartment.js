@@ -85,7 +85,7 @@ export const updateApartment = async (req, res) => {
 
     apartment.name = req.body.name || apartment.name;
     apartment.price = req.body.price || apartment.price;
-    apartment.houseUrl = req.body.houseUrl || apartment.houseUrl;
+    apartment.unitUrl = req.body.unitUrl || apartment.unitUrl;
     apartment.description = req.body.description || apartment.description;
     apartment.numberOfBedrooms =
       req.body.numberOfBedrooms || apartment.numberOfBedrooms;

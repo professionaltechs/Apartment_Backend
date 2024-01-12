@@ -1,46 +1,48 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const apartmentSchema = new Schema({
+const apartmentSchema = new Schema(
+  {
     name: {
-        type: String,
-        required: [true, "name is required"],
+      type: String,
+      required: [true, "name is required"],
     },
-    houseUrl: {
-        type: String,
-        required: [true, "house Url is required"],
+    unitUrl: {
+      type: String,
+      required: [true, "unit Url is required"],
     },
     price: {
-        type: Number,
-        required: [true, "price is required"]
+      type: Number,
+      required: [true, "price is required"],
     },
     description: {
-        type: String,
+      type: String,
     },
     numberOfBedrooms: {
-        type: String,
-        enum: ["one bedroom", "two bedrooms"]
+      type: String,
+      enum: ["one bedroom", "two bedrooms"],
     },
     stairs: {
-        type: String,
-        enum: ["upstairs", "downstairs"]
+      type: String,
+      enum: ["upstairs", "downstairs"],
     },
     complex: {
-        type: String,
-        enum: ["Austin West", "Stagecoach West", "Timberwood"]
+      type: String,
+      enum: ["Austin West", "Stagecoach West", "Timberwood"],
     },
     images: {
-        type: [String]
+      type: [String],
     },
     isDeleted: {
-        type: Number,
-        min: 0,
-        max: 1,
-        default: 0
-    }
-},
-{
-    timeStamps: true
-})
+      type: Number,
+      min: 0,
+      max: 1,
+      default: 0,
+    },
+  },
+  {
+    timeStamps: true,
+  }
+);
 
-export default mongoose.model('Apartment', apartmentSchema)
+export default mongoose.model("Apartment", apartmentSchema);
