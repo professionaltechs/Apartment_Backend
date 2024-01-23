@@ -60,8 +60,6 @@ export const signIn = async (req, res) => {
         message: "incorrect password",
         status: "failed",
       });
-    } else {
-      console.log("bcrypt removed");
     }
 
     const { password, ...responseUser } = admin._doc;
