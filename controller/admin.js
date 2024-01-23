@@ -54,16 +54,14 @@ export const signIn = async (req, res) => {
         status: "failed",
       });
     }
-    const isCorrectPassword = await bcrypt.compare(
-      req.body.password,
-      admin.password
-    );
 
-    if (!isCorrectPassword) {
+    if (!req.body.password === admin.password) {
       return res.status(401).json({
         message: "incorrect password",
         status: "failed",
       });
+    } else {
+      console.log("bcrypt removed");
     }
 
     const { password, ...responseUser } = admin._doc;
@@ -98,7 +96,7 @@ export const createUser = async (req, res) => {
     await admin.save();
 
     const { isDeleted, __v, ...userDetails } = admin._doc;
-    
+
     return res.status(200).json({
       message: userDetails,
       status: "user added succesfully",
